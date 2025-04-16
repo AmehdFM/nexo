@@ -1,0 +1,20 @@
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">{% block sidebar_title %}Navegación{% endblock %}</h5>
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            {% block sidebar_content %}
+            <a href="{% url 'teoria:index' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Teoría <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="{% url 'ejercicios:index' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Ejercicios <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="{% url 'recursos:index' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Recursos <i class="bi bi-chevron-right"></i>
+            </a>
+            {% endblock %}
+        </div>
+    </div>
+</div>

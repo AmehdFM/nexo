@@ -15,8 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+import teoria.urls
+import ejercicios.urls 
+import recursos.urls 
+import clases.urls 
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('example.urls')),
+    path('', include('main.urls')),
+    path('teoria/', include('teoria.urls', namespace='teoria')),
+    path('ejercicios/', include('ejercicios.urls', namespace='ejercicios')),
+    path('recursos/', include('recursos.urls', namespace='recursos')),
+    path('clases/', include('clases.urls', namespace='clases'))
 ]

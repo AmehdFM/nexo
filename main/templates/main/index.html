@@ -1,0 +1,495 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Portal de Ingeniería - Recursos Educativos{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Estilos específicos para el landing page */
+    .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{% static "img/engineering-bg.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        color: white;
+    }
+    
+    .feature-card {
+        height: 100%;
+        border: none;
+        transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+    
+    .subject-card {
+        border: none;
+        overflow: hidden;
+    }
+    
+    .subject-card img {
+        transition: transform 0.5s ease;
+    }
+    
+    .subject-card:hover img {
+        transform: scale(1.1);
+    }
+    
+    .counter-section {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    .counter-item {
+        text-align: center;
+    }
+    
+    .counter-value {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    
+    .counter-label {
+        font-size: 1.2rem;
+    }
+    
+    .popular-item-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .popular-item-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .section-header {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+    
+    .section-header:after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-4">Potencia tu educación en ingeniería</h1>
+        <p class="lead mb-5">Accede a teoría, ejercicios prácticos, recursos académicos y clases diseñados para estudiantes de ingeniería</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#main-sections" class="btn btn-primary btn-lg">Explorar materiales</a>
+            <a href="#features" class="btn btn-outline-light btn-lg">Conoce más</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5" id="features">
+    <div class="container">
+        <h2 class="text-center section-header">¿Qué te ofrecemos?</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-book feature-icon"></i>
+                        <h3 class="h4">Teoría</h3>
+                        <p class="text-muted">Explicaciones claras y detalladas de los fundamentos en ingeniería.</p>
+                        <a href="{% url 'teoria:index' %}" class="btn btn-sm btn-outline-primary mt-3">Ver teoría</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-pencil-square feature-icon"></i>
+                        <h3 class="h4">Ejercicios</h3>
+                        <p class="text-muted">Problemas resueltos y ejercicios para practicar lo aprendido.</p>
+                        <a href="{% url 'ejercicios:index' %}" class="btn btn-sm btn-outline-primary mt-3">Ver ejercicios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-file-earmark-arrow-down feature-icon"></i>
+                        <h3 class="h4">Recursos</h3>
+                        <p class="text-muted">Material complementario y herramientas para tu aprendizaje.</p>
+                        <a href="{% url 'recursos:index' %}" class="btn btn-sm btn-outline-primary mt-3">Ver recursos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-mortarboard feature-icon"></i>
+                        <h3 class="h4">Clases</h3>
+                        <p class="text-muted">Sesiones de clase y material didáctico complementario.</p>
+                        <a href="{% url 'clases:index' %}" class="btn btn-sm btn-outline-primary mt-3">Ver clases</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Counter Section -->
+<section class="counter-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="counter-item">
+                    <p class="counter-value">50+</p>
+                    <p class="counter-label">Temas de teoría</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="counter-item">
+                    <p class="counter-value">100+</p>
+                    <p class="counter-label">Ejercicios</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="counter-item">
+                    <p class="counter-value">30+</p>
+                    <p class="counter-label">Recursos</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="counter-item">
+                    <p class="counter-value">20+</p>
+                    <p class="counter-label">Clases</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Sections Content - Más populares -->
+<section class="py-5" id="main-sections">
+    <div class="container">
+        <h2 class="text-center section-header">Lo más buscado</h2>
+        
+        <!-- Teoría más buscada -->
+        <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="h4 mb-0">Teoría más popular</h3>
+                <a href="{% url 'teoria:index' %}" class="btn btn-outline-primary">Ver todo</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Matemáticas</span>
+                            <h5 class="card-title">Cálculo diferencial</h5>
+                            <p class="card-text">Fundamentos de derivadas y aplicaciones.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-primary w-100">Ver contenido</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Física</span>
+                            <h5 class="card-title">Mecánica vectorial</h5>
+                            <p class="card-text">Estática y dinámica de partículas.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-primary w-100">Ver contenido</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Electrónica</span>
+                            <h5 class="card-title">Circuitos DC</h5>
+                            <p class="card-text">Análisis de circuitos de corriente directa.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-primary w-100">Ver contenido</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Programación</span>
+                            <h5 class="card-title">Algoritmos básicos</h5>
+                            <p class="card-text">Estructuras de control y fundamentos.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-primary w-100">Ver contenido</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ejercicios más buscados -->
+        <div class="mb-5 pt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="h4 mb-0">Ejercicios más populares</h3>
+                <a href="{% url 'ejercicios:index' %}" class="btn btn-outline-primary">Ver todo</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Matemáticas</span>
+                            <h5 class="card-title">Integrales definidas</h5>
+                            <p class="card-text">Ejercicios resueltos paso a paso.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-success w-100">Practicar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Física</span>
+                            <h5 class="card-title">Problemas de cinemática</h5>
+                            <p class="card-text">Ejercicios sobre movimiento en 2D.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-success w-100">Practicar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Electrónica</span>
+                            <h5 class="card-title">Leyes de Kirchhoff</h5>
+                            <p class="card-text">Problemas de análisis de mallas.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-success w-100">Practicar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Programación</span>
+                            <h5 class="card-title">Estructuras de datos</h5>
+                            <p class="card-text">Ejercicios de listas y árboles.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-success w-100">Practicar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recursos más descargados -->
+        <div class="mb-5 pt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="h4 mb-0">Recursos más descargados</h3>
+                <a href="{% url 'recursos:index' %}" class="btn btn-outline-primary">Ver todo</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">PDF</span>
+                            <h5 class="card-title">Formulario de cálculo</h5>
+                            <p class="card-text">Compendio de fórmulas esenciales.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-info w-100">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Software</span>
+                            <h5 class="card-title">Calculadora gráfica</h5>
+                            <p class="card-text">Herramienta para graficar funciones.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-info w-100">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Hoja de cálculo</span>
+                            <h5 class="card-title">Plantilla de electricidad</h5>
+                            <p class="card-text">Para cálculos de circuitos eléctricos.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-info w-100">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Código</span>
+                            <h5 class="card-title">Librería de física</h5>
+                            <p class="card-text">Código Python para simulaciones.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-info w-100">Descargar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Clases más vistas -->
+        <div class="pt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="h4 mb-0">Clases más vistas</h3>
+                <a href="{% url 'clases:index' %}" class="btn btn-outline-primary">Ver todo</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">Matemáticas</span>
+                            <h5 class="card-title">Introducción a las EDO</h5>
+                            <p class="card-text">Clase sobre ecuaciones diferenciales.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-warning w-100">Ver clase</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">Física</span>
+                            <h5 class="card-title">Termodinámica básica</h5>
+                            <p class="card-text">Principios y leyes fundamentales.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-warning w-100">Ver clase</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">Electrónica</span>
+                            <h5 class="card-title">Amplificadores operacionales</h5>
+                            <p class="card-text">Configuraciones básicas y aplicaciones.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-warning w-100">Ver clase</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card popular-item-card shadow-sm h-100">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">Programación</span>
+                            <h5 class="card-title">Programación orientada a objetos</h5>
+                            <p class="card-text">Conceptos y ejemplos prácticos.</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-warning w-100">Ver clase</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="mb-3">Mantente actualizado</h2>
+                <p class="lead mb-0">Suscríbete a nuestro boletín para recibir actualizaciones sobre nuevo contenido, recursos y consejos de estudio.</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="row g-3">
+                    <div class="col-8">
+                        <input type="email" class="form-control form-control-lg" placeholder="Tu correo electrónico">
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-light btn-lg w-100">Suscribirse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-light-custom">
+    <div class="container text-center">
+        <h2 class="mb-4">¿Listo para potenciar tu aprendizaje?</h2>
+        <p class="lead mb-4">Explora nuestras secciones y comienza a aprovechar todos los recursos disponibles.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#main-sections" class="btn btn-primary btn-lg">Explorar contenido</a>
+        </div>
+    </div>
+</section>
+
+<!-- Back to top button -->
+<a href="#" id="back-to-top" class="btn btn-primary btn-lg position-fixed bottom-0 end-0 m-4 d-none" role="button">
+    <i class="bi bi-arrow-up"></i>
+</a>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Script para animación de contadores
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animación simple para los contadores
+        const counterItems = document.querySelectorAll('.counter-value');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Añadir una clase para animar con CSS
+                    entry.target.classList.add('counter-animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.5});
+        
+        counterItems.forEach(counter => {
+            observer.observe(counter);
+        });
+        
+        // Mostrar/ocultar botón de volver arriba
+        const backToTopButton = document.getElementById('back-to-top');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopButton.classList.remove('d-none');
+            } else {
+                backToTopButton.classList.add('d-none');
+            }
+        };
+    });
+</script>
+{% endblock %}

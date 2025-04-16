@@ -1,0 +1,17 @@
+<div class="card h-100 shadow-sm">
+    {% if card_image %}
+    <img src="{{ card_image }}" class="card-img-top" alt="{{ card_title }}">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ card_title }}</h5>
+        <p class="card-text">{{ card_text }}</p>
+        {% if card_url %}
+        <a href="{{ card_url }}" class="btn btn-primary">{{ card_button_text|default:"Ver más" }}</a>
+        {% endif %}
+    </div>
+    {% if card_footer %}
+    <div class="card-footer text-muted">
+        {{ card_footer }}
+    </div>
+    {% endif %}
+</div>

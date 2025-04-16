@@ -1,0 +1,9 @@
+<div class="alert alert-{{ alert_type|default:'info' }} {% if alert_dismissible %}alert-dismissible fade show{% endif %}" role="alert">
+    {% if alert_heading %}
+    <h4 class="alert-heading">{{ alert_heading }}</h4>
+    {% endif %}
+    {{ alert_message }}
+    {% if alert_dismissible %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    {% endif %}
+</div>

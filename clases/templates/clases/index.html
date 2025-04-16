@@ -1,0 +1,105 @@
+index.html{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Clases Disponibles | Portal Ingeniería{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="fw-bold mb-3">Clases Disponibles</h1>
+                <p class="lead text-muted">Explora nuestras clases por materia y nivel. Cada clase incluye teoría, ejercicios y recursos adicionales.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% if clases %}
+                {% for clase in clases %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-img-top bg-light text-center py-4">
+                                {% if clase.imagen %}
+                                    <img src="{{ clase.imagen.url }}" alt="{{ clase.titulo }}" class="img-fluid" style="height: 150px; object-fit: contain;">
+                                {% else %}
+                                    <i class="bi bi-mortarboard display-1 text-primary"></i>
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                <span class="badge bg-primary mb-2">{{ clase.categoria }}</span>
+                                <h5 class="card-title">{{ clase.titulo }}</h5>
+                                <p class="card-text text-muted">{{ clase.descripcion_corta }}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i>{{ clase.duracion }} horas
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="bi bi-mortarboard me-1"></i>{{ clase.nivel }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="{% url 'clases:detalle' clase.slug %}" class="btn btn-primary w-100">Ver clase</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-exclamation-circle display-4 text-muted mb-3"></i>
+                    <h3>No hay clases disponibles</h3>
+                    <p class="text-muted">Pronto agregaremos nuevas clases. ¡Vuelve a revisar más tarde!</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Filtros (opcional) -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Filtrar Clases</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="get" action="{% url 'clases:index' %}">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="categoria" class="form-label">Categoría</label>
+                                    <select name="categoria" id="categoria" class="form-select">
+                                        <option value="">Todas</option>
+                                        <option value="matematicas">Matemáticas</option>
+                                        <option value="fisica">Física</option>
+                                        <option value="programacion">Programación</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="nivel" class="form-label">Nivel</label>
+                                    <select name="nivel" id="nivel" class="form-select">
+                                        <option value="">Todos</option>
+                                        <option value="principiante">Principiante</option>
+                                        <option value="intermedio">Intermedio</option>
+                                        <option value="avanzado">Avanzado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="duracion" class="form-label">Duración máxima</label>
+                                    <select name="duracion" id="duracion" class="form-select">
+                                        <option value="">Cualquiera</option>
+                                        <option value="5">Hasta 5 horas</option>
+                                        <option value="10">Hasta 10 horas</option>
+                                        <option value="20">Hasta 20 horas</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary px-4">Filtrar</button>
+                                    <a href="{% url 'clases:index' %}" class="btn btn-outline-secondary ms-2">Limpiar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sección de Teoría{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            {% include "components/sidebar.html" %}
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="col-lg-9 col-md-8 py-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h1 class="h3 mb-0">Título de la Teoría</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Teoría</li>
+                        </ol>
+                    </nav>
+                    
+                    <!-- Contenido de la teoría -->
+                    <section class="teoria-content">
+                        <h2>Introducción</h2>
+                        <p class="lead">
+                            Aquí va una breve introducción al tema que se va a tratar en esta sección teórica.
+                        </p>
+                        
+                        <div class="my-4">
+                            <h3>Sección 1</h3>
+                            <p>
+                                Contenido detallado de la primera sección. Puede incluir texto enriquecido,
+                                fórmulas matemáticas, imágenes explicativas, etc.
+                            </p>
+                            
+                            <!-- Ejemplo de imagen -->
+                            <div class="text-center my-4">
+                                <img src="{% static 'img/placeholder-teoria.jpg' %}" alt="Imagen explicativa" class="img-fluid rounded">
+                                <small class="d-block text-muted mt-2">Figura 1: Descripción de la imagen</small>
+                            </div>
+                        </div>
+                        
+                        <div class="my-4">
+                            <h3>Sección 2</h3>
+                            <p>
+                                Contenido detallado de la segunda sección. Aquí puedes incluir más texto,
+                                ejemplos, casos de estudio, etc.
+                            </p>
+                            
+                            <!-- Ejemplo de código destacado -->
+                            <div class="bg-light p-3 rounded my-3">
+                                <pre class="mb-0"><code>// Ejemplo de código
+function calcularValor(x) {
+    return x * Math.PI;
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejemplo de tabla de datos -->
+                        <div class="my-4">
+                            <h3>Comparativa</h3>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Concepto</th>
+                                            <th>Descripción</th>
+                                            <th>Aplicación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Concepto 1</td>
+                                            <td>Descripción breve del concepto</td>
+                                            <td>Dónde se aplica este concepto</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Concepto 2</td>
+                                            <td>Descripción breve del concepto</td>
+                                            <td>Dónde se aplica este concepto</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Referencias -->
+                        <div class="my-4 p-3 bg-light rounded">
+                            <h3>Referencias</h3>
+                            <ul>
+                                <li>Autor, A. (Año). <em>Título del libro</em>. Editorial.</li>
+                                <li>Autor, B. (Año). Título del artículo. <em>Nombre de la revista</em>, Volumen(Número), páginas.</li>
+                                <li>Sitio web. (Año). <em>Título de la página</em>. URL</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <!-- Navegación entre temas -->
+                    <div class="d-flex justify-content-between mt-5 pt-3 border-top">
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left me-1"></i> Tema anterior
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            Siguiente tema <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

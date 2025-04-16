@@ -1,0 +1,11 @@
+<nav aria-label="breadcrumb" class="mt-3 mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Inicio</a></li>
+        {% block breadcrumb_items %}
+        <!-- Ejemplo de uso:
+        <li class="breadcrumb-item"><a href="{% url 'teoria:index' %}">Teoría</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Matemáticas</li>
+        -->
+        {% endblock %}
+    </ol>
+</nav>

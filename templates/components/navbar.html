@@ -1,0 +1,47 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'main:home' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" height="30" class="me-2">
+            <span>NEXO</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page == 'home' %}active{% endif %}" href="{% url 'main:home' %}">
+                        <i class="bi bi-house-door me-1"></i>Menú Principal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'teoria' in active_page %}active{% endif %}" href="{% url 'teoria:index' %}">
+                        <i class="bi bi-book me-1"></i>Teoría
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'ejercicios' in active_page %}active{% endif %}" href="{% url 'ejercicios:index' %}">
+                        <i class="bi bi-pencil-square me-1"></i>Ejercicios
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'recursos' in active_page %}active{% endif %}" href="{% url 'recursos:index' %}">
+                        <i class="bi bi-file-earmark-arrow-down me-1"></i>Recursos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if 'clases' in active_page %}active{% endif %}" href="{% url 'clases:index' %}">
+                        <i class="bi bi-mortarboard me-1"></i>Clases
+                    </a>
+                </li>
+            </ul>
+            <form class="d-flex ms-lg-3 mt-3 mt-lg-0">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ clase.titulo }} | Portal Ingeniería{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <!-- Encabezado de la clase -->
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'clases:index' %}">Clases</a></li>
+                        <li class="breadcrumb-item active">{{ clase.titulo }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold mb-3">{{ clase.titulo }}</h1>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge bg-primary">{{ clase.categoria }}</span>
+                    <span class="badge bg-secondary">{{ clase.nivel }}</span>
+                    <span class="badge bg-info text-dark">
+                        <i class="bi bi-clock me-1"></i>{{ clase.duracion }} horas
+                    </span>
+                </div>
+                <p class="lead">{{ clase.descripcion }}</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                {% if clase.imagen %}
+                    <img src="{{ clase.imagen.url }}" alt="{{ clase.titulo }}" class="img-fluid rounded shadow-sm" style="max-height: 250px;">
+                {% else %}
+                    <div class="bg-light rounded shadow-sm p-5 d-flex align-items-center justify-content-center">
+                        <i class="bi bi-mortarboard display-1 text-primary"></i>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="row">
+            <!-- Navegación por pestañas -->
+            <div class="col-12 mb-4">
+                <ul class="nav nav-tabs" id="claseTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="informacion-tab" data-bs-toggle="tab" data-bs-target="#informacion" type="button" role="tab" aria-selected="true">
+                            <i class="bi bi-info-circle me-1"></i>Información General
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="teoria-tab" data-bs-toggle="tab" data-bs-target="#teoria" type="button" role="tab" aria-selected="false">
+                            <i class="bi bi-book me-1"></i>Teoría
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="ejercicios-tab" data-bs-toggle="tab" data-bs-target="#ejercicios" type="button" role="tab" aria-selected="false">
+                            <i class="bi bi-pencil-square me-1"></i>Ejercicios
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="recursos-tab" data-bs-toggle="tab" data-bs-target="#recursos" type="button" role="tab" aria-selected="false">
+                            <i class="bi bi-file-earmark-arrow-down me-1"></i>Recursos
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0 rounded-bottom shadow-sm" id="claseTabContent">
+                    <!-- Pestaña: Información General -->
+                    <div class="tab-pane fade show active" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h3 class="mb-4">Acerca de esta clase</h3>
+                                <div class="mb-4">
+                                    {{ clase.contenido|safe }}
+                                </div>
+
+                                <h4 class="mt-5 mb-3">Objetivos de aprendizaje</h4>
+                                <ul class="list-group list-group-flush">
+                                    {% for objetivo in clase.objetivos.all %}
+                                        <li class="list-group-item ps-0 border-start-0 border-end-0">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                            {{ objetivo.descripcion }}
+                                        </li>
+                                    {% empty %}
+                                        <li class="list-group-item ps-0 border-start-0 border-end-0 text-muted">
+                                            No hay objetivos definidos para esta clase.
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card shadow-sm mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Detalles de la clase</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2">
+                                                <i class="bi bi-person me-2 text-primary"></i>
+                                                <strong>Profesor:</strong> {{ clase.profesor }}
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="bi bi-mortarboard me-2 text-primary"></i>
+                                                <strong>Nivel:</strong> {{ clase.nivel }}
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="bi bi-clock me-2 text-primary"></i>
+                                                <strong>Duración:</strong> {{ clase.duracion }} horas
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="bi bi-calendar-event me-2 text-primary"></i>
+                                                <strong>Última actualización:</strong> {{ clase.fecha_actualizacion|date:"d/m/Y" }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Requisitos previos</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            {% for requisito in clase.requisitos.all %}
+                                                <li class="list-group-item ps-0 border-start-0 border-end-0">
+                                                    <i class="bi bi-arrow-right text-primary me-2"></i>
+                                                    {{ requisito.descripcion }}
+                                                </li>
+                                            {% empty %}
+                                                <li class="list-group-item ps-0 border-start-0 border-end-0 text-muted">
+                                                    No hay requisitos previos para esta clase.
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pestaña: Teoría -->
+                    <div class="tab-pane fade" id="teoria" role="tabpanel" aria-labelledby="teoria-tab">
+                        <h3 class="mb-4">Material Teórico</h3>
+                        
+                        {% if clase.temas.all %}
+                            <div class="accordion" id="accordionTemas">
+                                {% for tema in clase.temas.all %}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ tema.id }}">
+                                            <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ tema.id }}">
+                                                {{ tema.titulo }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ tema.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#accordionTemas">
+                                            <div class="accordion-body">
+                                                <div class="mb-3">{{ tema.contenido|safe }}</div>
+                                                
+                                                {% if tema.recursos.all %}
+                                                    <h6 class="mb-3">Recursos del tema:</h6>
+                                                    <div class="list-group mb-3">
+                                                        {% for recurso in tema.recursos.all %}
+                                                            <a href="{{ recurso.archivo.url }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <i class="bi bi-file-earmark me-2"></i>
+                                                                    {{ recurso.titulo }}
+                                                                </div>
+                                                                <span class="badge bg-primary rounded-pill">
+                                                                    <i class="bi bi-download"></i>
+                                                                </span>
+                                                            </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                El contenido teórico para esta clase está en desarrollo. ¡Vuelve pronto para consultar las actualizaciones!
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Pestaña: Ejercicios -->
+                    <div class="tab-pane fade" id="ejercicios" role="tabpanel" aria-labelledby="ejercicios-tab">
+                        <h3 class="mb-4">Ejercicios Prácticos</h3>
+                        
+                        {% if clase.ejercicios.all %}
+                            <div class="row g-4">
+                                {% for ejercicio in clase.ejercicios.all %}
+                                    <div class="col-md-6">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                                <h5 class="mb-0">Ejercicio #{{ forloop.counter }}</h5>
+                                                <span class="badge bg-{% if ejercicio.dificultad == 'facil' %}success{% elif ejercicio.dificultad == 'intermedio' %}warning{% else %}danger{% endif %}">
+                                                    {{ ejercicio.dificultad|title }}
+                                                </span>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">{{ ejercicio.enunciado }}</p>
+                                                
+                                                {% if ejercicio.imagen %}
+                                                    <div class="text-center my-3">
+                                                        <img src="{{ ejercicio.imagen.url }}" alt="Imagen del ejercicio" class="img-fluid rounded">
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <button class="btn btn-outline-primary btn-sm mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#solucion{{ ejercicio.id }}">
+                                                    Ver solución
+                                                </button>
+                                                <div class="collapse mt-3" id="solucion{{ ejercicio.id }}">
+                                                    <div class="card card-body bg-light">
+                                                        {{ ejercicio.solucion|safe }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                Los ejercicios para esta clase están en desarrollo. ¡Vuelve pronto para consultar las actualizaciones!
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Pestaña: Recursos -->
+                    <div class="tab-pane fade" id="recursos" role="tabpanel" aria-labelledby="recursos-tab">
+                        <h3 class="mb-4">Recursos Adicionales</h3>
+                        
+                        {% if clase.recursos.all %}
+                            <div class="row g-4">
+                                {% for recurso in clase.recursos.all %}
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ recurso.titulo }}</h5>
+                                                <p class="card-text text-muted">{{ recurso.descripcion }}</p>
+                                            </div>
+                                            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-secondary">{{ recurso.tipo }}</span>
+                                                <a href="{{ recurso.url }}" class="btn btn-sm btn-primary" target="_blank">
+                                                    <i class="bi bi-download me-1"></i>Descargar
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                No hay recursos adicionales disponibles para esta clase en este momento.
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Enlaces externos -->
+                        <h4 class="mt-5 mb-3">Enlaces recomendados</h4>
+                        <div class="list-group">
+                            {% for enlace in clase.enlaces.all %}
+                                <a href="{{ enlace.url }}" class="list-group-item list-group-item-action" target="_blank">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ enlace.titulo }}</h5>
+                                        <small>{{ enlace.tipo }}</small>
+                                    </div>
+                                    <p class="mb-1">{{ enlace.descripcion }}</p>
+                                    <small class="text-muted">
+                                        <i class="bi bi-box-arrow-up-right me-1"></i>{{ enlace.url }}
+                                    </small>
+                                </a>
+                            {% empty %}
+                                <div class="list-group-item text-muted">
+                                    No hay enlaces recomendados para esta clase.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Clases relacionadas (opcional) -->
+        {% if clases_relacionadas %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">Clases relacionadas</h3>
+                    <div class="row g-4">
+                        {% for clase_rel in clases_relacionadas %}
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card h-100 shadow-sm hover-card">
+                                    <div class="card-body">
+                                        <span class="badge bg-primary mb-2">{{ clase_rel.categoria }}</span>
+                                        <h5 class="card-title">{{ clase_rel.titulo }}</h5>
+                                        <p class="card-text small text-muted">{{ clase_rel.descripcion_corta }}</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0">
+                                        <a href="{% url 'clases:detalle' clase_rel.slug %}" class="btn btn-sm btn-outline-primary w-100">Ver clase</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

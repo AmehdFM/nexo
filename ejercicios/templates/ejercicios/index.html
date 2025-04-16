@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ejercicios | Portal Ingeniería{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            {% include "components/sidebar.html" %}
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="col-lg-9 col-md-8 py-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h1 class="h3 mb-0">Banco de Ejercicios</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Ejercicios</li>
+                        </ol>
+                    </nav>
+                    
+                    <!-- Buscador y filtros -->
+                    <div class="row mb-4">
+                        <div class="col-md-8 mb-3 mb-md-0">
+                            <form class="d-flex" action="" method="GET">
+                                <input class="form-control me-2" type="search" placeholder="Buscar ejercicios..." name="q">
+                                <button class="btn btn-outline-warning" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" aria-label="Filtrar por dificultad">
+                                <option selected>Filtrar por dificultad</option>
+                                <option value="1">Básico</option>
+                                <option value="2">Intermedio</option>
+                                <option value="3">Avanzado</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Descripción general -->
+                    <div class="alert alert-warning mb-4">
+                        <p class="mb-0">
+                            Practica y refuerza tus conocimientos con nuestra colección de ejercicios de ingeniería. 
+                            Aquí encontrarás problemas con soluciones detalladas y guías paso a paso.
+                        </p>
+                    </div>
+                    
+                    <!-- Estadísticas rápidas -->
+                    <div class="row row-cols-1 row-cols-md-3 mb-4 text-center">
+                        <div class="col mb-4 mb-md-0">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="display-4 fw-bold text-warning">245</h3>
+                                    <p class="text-muted mb-0">Ejercicios disponibles</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-4 mb-md-0">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="display-4 fw-bold text-warning">15</h3>
+                                    <p class="text-muted mb-0">Categorías</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="display-4 fw-bold text-warning">3.2K</h3>
+                                    <p class="text-muted mb-0">Ejercicios completados</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Categorías principales -->
+                    <div class="mb-5">
+                        <h2 class="h4 mb-3 border-bottom pb-2">Categorías de ejercicios</h2>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                            <!-- Categoría 1 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-calculator text-warning me-2"></i>Cálculo
+                                            </h3>
+                                            <span class="badge bg-light text-dark">42 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Categoría 2 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-lightning-charge text-warning me-2"></i>Circuitos
+                                            </h3>
+                                            <span class="badge bg-light text-dark">36 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Categoría 3 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-gear text-warning me-2"></i>Mecánica
+                                            </h3>
+                                            <span class="badge bg-light text-dark">28 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Categoría 4 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-building text-warning me-2"></i>Estructuras
+                                            </h3>
+                                            <span class="badge bg-light text-dark">31 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-half text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Categoría 5 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-cpu text-warning me-2"></i>Programación
+                                            </h3>
+                                            <span class="badge bg-light text-dark">45 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Categoría 6 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="h5 mb-0">
+                                                <i class="bi bi-droplet text-warning me-2"></i>Fluidos
+                                            </h3>
+                                            <span class="badge bg-light text-dark">22 ejercicios</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <small class="text-muted">Dificultad media:</small>
+                                            <div>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-white">
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicios</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a href="#" class="btn btn-outline-warning">Ver todas las categorías</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ejercicios recientes -->
+                    <div class="mb-5">
+                        <h2 class="h4 mb-3 border-bottom pb-2">Ejercicios recientemente añadidos</h2>
+                        <div class="list-group">
+                            <!-- Ejercicio 1 -->
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h3 class="h6 mb-1">Análisis de un circuito RLC en serie</h3>
+                                    <span class="badge bg-warning text-dark">Intermedio</span>
+                                </div>
+                                <p class="mb-1 text-muted small">Determinar la respuesta en frecuencia de un circuito RLC en serie con resistencia R=100Ω, inductancia L=10mH y capacitancia C=100μF.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <small class="text-muted">Circuitos · 10/04/2025</small>
+                                    <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicio</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Ejercicio 2 -->
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h3 class="h6 mb-1">Optimización de una función de dos variables</h3>
+                                    <span class="badge bg-warning text-dark">Avanzado</span>
+                                </div>
+                                <p class="mb-1 text-muted small">Encontrar los puntos críticos de la función f(x,y) = x³ - 3xy + y³ y determinar si son máximos, mínimos o puntos de silla.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <small class="text-muted">Cálculo · 08/04/2025</small>
+                                    <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicio</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Ejercicio 3 -->
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h3 class="h6 mb-1">Algoritmo de ordenamiento en Python</h3>
+                                    <span class="badge bg-warning text-dark">Básico</span>
+                                </div>
+                                <p class="mb-1 text-muted small">Implementar el algoritmo QuickSort en Python y analizar su complejidad temporal y espacial.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <small class="text-muted">Programación · 05/04/2025</small>
+                                    <a href="#" class="btn btn-sm btn-outline-warning">Ver ejercicio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ejercicios populares -->
+                    <div class="mb-5">
+                        <h2 class="h4 mb-3 border-bottom pb-2">Ejercicios más populares</h2>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <!-- Ejercicio popular 1 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-warning text-dark">Básico</span>
+                                            <small class="text-muted">1.2k soluciones</small>
+                                        </div>
+                                        <h3 class="card-title h6">Ley de Ohm en un circuito simple</h3>
+                                        <p class="card-text small">Calcular la resistencia equivalente y la corriente total en un circuito con resistencias en serie y paralelo.</p>
+                                    </div>
+                                    <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Circuitos</small>
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Resolver</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Ejercicio popular 2 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-warning text-dark">Intermedio</span>
+                                            <small class="text-muted">946 soluciones</small>
+                                        </div>
+                                        <h3 class="card-title h6">Ecuaciones diferenciales de segundo orden</h3>
+                                        <p class="card-text small">Resolver la ecuación diferencial que modela un sistema masa-resorte con amortiguamiento.</p>
+                                    </div>
+                                    <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Matemáticas</small>
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Resolver</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Ejercicio popular 3 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-warning text-dark">Avanzado</span>
+                                            <small class="text-muted">783 soluciones</small>
+                                        </div>
+                                        <h3 class="card-title h6">Análisis de vigas con cargas distribuidas</h3>
+                                        <p class="card-text small">Calcular los diagramas de fuerza cortante y momento flector para una viga con apoyos y cargas combinadas.</p>
+                                    </div>
+                                    <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Estructuras</small>
+                                        <a href="#" class="btn btn-sm btn-outline-warning">Resolver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA - Contribución -->
+                    <div class="card border-warning">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h2 class="h5">¿Quieres contribuir con ejercicios?</h2>
+                                    <p class="mb-md-0">Si eres estudiante o profesor, puedes enviar ejercicios para que sean incluidos en nuestra plataforma previo proceso de revisión.</p>
+                                </div>
+                                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                    <a href="#" class="btn btn-warning">Enviar ejercicio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

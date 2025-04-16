@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Recursos | Portal Ingeniería{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            {% include "components/sidebar.html" %}
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="col-lg-9 col-md-8 py-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h1 class="h3 mb-0">Centro de Recursos</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Recursos</li>
+                        </ol>
+                    </nav>
+                    
+                    <!-- Buscador -->
+                    <div class="mb-4">
+                        <form class="d-flex" action="" method="GET">
+                            <input class="form-control me-2" type="search" placeholder="Buscar recursos..." name="q">
+                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Descripción general -->
+                    <div class="alert alert-success mb-4">
+                        <p class="mb-0">
+                            Explora nuestra colección de recursos para ingeniería: herramientas, plantillas, 
+                            ejercicios resueltos, simuladores y material complementario para tu formación.
+                        </p>
+                    </div>
+                    
+                    <!-- Filtros rápidos -->
+                    <div class="mb-4">
+                        <h2 class="h5 mb-3">Filtrar por tipo:</h2>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-secondary">Todos</a>
+                            <a href="#" class="btn btn-sm btn-outline-success">Documentos</a>
+                            <a href="#" class="btn btn-sm btn-outline-success">Herramientas</a>
+                            <a href="#" class="btn btn-sm btn-outline-success">Ejercicios</a>
+                            <a href="#" class="btn btn-sm btn-outline-success">Software</a>
+                            <a href="#" class="btn btn-sm btn-outline-success">Plantillas</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Recursos destacados -->
+                    <div class="mb-5">
+                        <h2 class="h4 mb-3 border-bottom pb-2">Recursos destacados</h2>
+                        <div class="row row-cols-1 row-cols-md-2 g-4">
+                            <!-- Recurso 1 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                        <h3 class="h6 mb-0">Calculadora de Resistencias</h3>
+                                        <span class="badge bg-success">Herramienta</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Calcula valores de resistencias a partir de códigos de colores y viceversa.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-sm btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-sm btn-outline-secondary">Descargar</a>
+                                            </div>
+                                            <small class="text-muted">5 min</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Recurso 2 -->
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                        <h3 class="h6 mb-0">Ejercicios de Circuitos Eléctricos</h3>
+                                        <span class="badge bg-success">Ejercicios</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Colección de problemas resueltos de análisis de circuitos eléctricos.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-sm btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-sm btn-outline-secondary">Descargar</a>
+                                            </div>
+                                            <small class="text-muted">20 problemas</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recursos recientes -->
+                    <div class="mb-5">
+                        <h2 class="h4 mb-3 border-bottom pb-2">Recursos recientes</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha</th>
+                                        <th>Descargas</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Plantilla para Informe de Laboratorio</td>
+                                        <td><span class="badge bg-success">Plantilla</span></td>
+                                        <td>12/04/2025</td>
+                                        <td>124</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="#" class="btn btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-outline-secondary">Descargar</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Simulador de Sistemas Dinámicos</td>
+                                        <td><span class="badge bg-success">Software</span></td>
+                                        <td>10/04/2025</td>
+                                        <td>87</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="#" class="btn btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-outline-secondary">Descargar</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Guía Rápida de Python para Ingenieros</td>
+                                        <td><span class="badge bg-success">Documento</span></td>
+                                        <td>08/04/2025</td>
+                                        <td>156</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="#" class="btn btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-outline-secondary">Descargar</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculadora de Vigas y Momentos</td>
+                                        <td><span class="badge bg-success">Herramienta</span></td>
+                                        <td>05/04/2025</td>
+                                        <td>93</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="#" class="btn btn-outline-success">Ver</a>
+                                                <a href="#" class="btn btn-outline-secondary">Descargar</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#" class="btn btn-outline-success">Ver todos los recursos</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Solicitar recursos -->
+                    <div class="card border-success mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h2 class="h5 mb-0">¿No encuentras lo que buscas?</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Si necesitas un recurso específico que no está disponible, puedes solicitarlo.</p>
+                            <a href="#" class="btn btn-success">Solicitar recurso</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
